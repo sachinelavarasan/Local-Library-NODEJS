@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+      <div class="m-4 text-center">
+          <img src="/images/logo.svg" alt="">
+          <p class="text-white">Lifestyle | Fashion | Travel</p>
+
+      </div>
+      <div class="row mb-3">
+          <a href="blogs/new" class="btn btn-success d-flex align-items-center"><i
+                  class="material-icons mr-2">add_circle</i>
+              New Blog</a>
+      </div>
+
+      <div class="row">
+
+          <% if(sample.length<1){%>
+
+          <p class="text-white">No posts yet, create a new one</p>
+
+          <%  } %>
+
+
+          <% sample.forEach(blog=>{ %>
+
+
+          <div class="col-lg-6 card mt-2 mr-0">
+              <div class="row p-2">
+
+                  <div class="col-5 overflow-hidden">
+                      <img src="/uploads/<%= blog.img %>" class="card-img" alt="...">
+
+                  </div>
+
+                  <div class="col-7">
+                      <div class="d-flex align-items-start">
+                          <h5 class="w-100"><b> <%= blog.title %> </b></h5>
+
+                          <!-- display more button -->
+                          <div class="more position-relative" style="cursor: pointer;">
+
+
+                              <i class="material-icons p-2">more_vert</i>
+                              <!-- options list -->
+                              <div class="d-none options card rounded-pill shadow-sm p-1 position-absolute">
+                                  <a href="blogs/edit/<%= blog.id %> " class=" p-2 mb-2" >
+                                      <i class="material-icons" >create</i>
+                                  </a>
+                                  <form action="/blogs/<%=blog.id%>?_method=DELETE" method="POST">
+                                      <button class=" p-2  mb-2">
+                                          <i class="material-icons" style="color:red">delete</i>
+
+                                      </button>
+                                  </form>
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <span class="align-self-stretch "><%= blog.snippet %>
+
+                      </span>
+                      <div class="d-flex align-items-end">
+                          <div class="mr-2">
+                              <img src="/uploads/<%= blog.img %>" class="rounded-circle"
+                                  style="width: 40px; height: 40px;">
+                          </div>
+                          <div class=" flex-grow-1">
+                              <h5 class="" style="font-size: 14px; line-height: 0.5rem;">
+                                  <span><b><%= blog.author%></b></span></h5>
+                              <p style="font-size: 8px; line-height: 0.2rem;">
+                                  <%= blog.time.toLocaleDateString() %></p>
+                          </div>
+                          <a href="blogs/<%=blog.slug %> " class=" align-self-end">
+                              <i class='material-icons ml-3 text-black'>send</i>
+                          </a>
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+
+
+          <% }) %>
+
+
+
+
+      </div>
+      <script src="/js/index.js"></script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Blog Post</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mb-4 text-white">editing <%= blog.title %> </h1>
+
+        <form action="/blogs/<%= blog.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+
+                <label for="title" class="text-white">Title</label>
+                <input type="text" class="form-control" placeholder="Title" name="title" value="<%= blog.title %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+
+                <label for="author" class="text-white">Author</label>
+                <input type="text" class="form-control" placeholder="Author" name="author" value="<%= blog.author %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="image" class="text-white">Upload image</label>
+                <input type="file" name="image" id="image" class="form-control-file text-white">
+            </div>
+        
+            <div class="form-group">
+
+                <label for="description" class="text-white">Description</label>
+                <textarea name="description" placeholder="Description" class="form-control">
+
+                    <%= blog.description %>
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <a href="/" class="btn btn-warning">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</html>
